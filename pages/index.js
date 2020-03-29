@@ -4,18 +4,17 @@ import Layout from '../components/Layout';
 
 const Index = () => (
 	<Layout>
-		<div className="main">
-			<div className="welcome">Welcome to</div>
-			<div className="name">041FDS</div>
+		<div className="login-label">
+			LOGIN
 		</div>
 		<div className="login">
-			<div className="login-label">
-				LOGIN
-			</div>
 			<div className="user">
 				<span className="user-label">Phone Number</span>
 				<input className="user-input" type="text" name="phone" placeholder="Enter phone number..." />
 			</div>
+			<Link href="/customer">
+				<button className="login-button">LOGIN</button>
+			</Link>
 			<div className="register">
 				<Link href="/register">
 					<a className="register-link">Don't have an account with us yet?</a>
@@ -23,28 +22,14 @@ const Index = () => (
 			</div>
 		</div>
 		<style jsx>{`
-			.main {
-				font-family: Arial, sans-serif;
-			}
 			.login {
 				font-family: Arial, sans-serif;
+				text-align: center;
 				background-color: #000;
 			}
-			.welcome {
-				font-size: 24pt;
-				padding: 20px;
-				background-color: #123456;
-				color: #efab78;
-			}
-			.name {
-				font-size: 48pt;
-				font-weight: 700;
-				text-align: right;
-				padding: 30px;
-				background-color: #112233;
-				color: #aaa;
-			}
 			.login-label {
+				font-family: Arial, sans-serif;
+				background-color: #000;
 				color: #fff;
 				font-size: 12pt;
 				padding: 8px;
@@ -69,6 +54,17 @@ const Index = () => (
 				outline: none;
 				box-shadow: none;
 				border-radius: 4px;
+				border-color: #fff;
+			}
+			.login-button{
+				font-size: 24px;
+				width: 180px;
+				height: 60px;
+				background-color: #000;
+				color: #ccc;
+				outline: none;
+				box-shadow: none;
+				border-radius: 12px;
 				border-color: #fff;
 			}
 			.register {

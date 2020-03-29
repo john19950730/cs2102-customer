@@ -2,26 +2,27 @@ import Link from 'next/link';
 
 const Header = () => (
 	<div className="header">
-		<Link href="/index">
-			<a>Main</a>
-		</Link>
-		<Link href="/about">
-			<a>About Page</a>
-		</Link>
+		<div className="main">
+			<div className="welcome">Welcome to</div>
+			<div className="name">041FDS</div>
+		</div>
 		<style jsx>{`
-			.header {
-				padding: 7px 0;
-				height: 25px;
-			}
-			.header a {
+			.main {
 				font-family: Arial, sans-serif;
-				padding: 7px;
-				margin-right: 7px;
-				text-decoration: none;
-				outline: none;
-				border-radius: 3px;
-				background: #ab90ef;
-				color: #fff;
+			}
+			.welcome {
+				font-size: 24pt;
+				padding: 20px;
+				background-color: #123456;
+				color: #efab78;
+			}
+			.name {
+				font-size: 48pt;
+				font-weight: 700;
+				text-align: right;
+				padding: 30px;
+				background-color: #112233;
+				color: #aaa;
 			}
 		`}</style>
 	</div>

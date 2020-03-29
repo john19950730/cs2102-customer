@@ -22,7 +22,7 @@ const Register = () => (
 					<td className="input"><input className="card-input" type="text" name="name" /></td>
 				</tr>
 			</table>
-			<Link href="/index">
+			<Link href="/">
 				<button className="register-button">REGISTER</button>
 			</Link>
 		</div>
@@ -69,6 +69,8 @@ const Register = () => (
 				height: 60px;
 				background-color: #000;
 				color: #ccc;
+				outline: none;
+				box-shadow: none;
 				border-radius: 12px;
 				border-color: #fff;
 			}
