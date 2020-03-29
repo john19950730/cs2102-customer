@@ -3,10 +3,10 @@ import Link from 'next/link';
 const Header = () => (
 	<div className="header">
 		<Link href="/index">
-			<a className="btn">Main</a>
+			<a>Main</a>
 		</Link>
 		<Link href="/about">
-			<a className="btn">About Page</a>
+			<a>About Page</a>
 		</Link>
 		<style jsx>{`
 			.header {
