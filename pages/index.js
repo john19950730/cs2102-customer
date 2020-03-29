@@ -47,7 +47,7 @@ const Index = () => (
 			.login-label {
 				color: #fff;
 				font-size: 12pt;
-				padding: 4px;
+				padding: 8px;
 			}
 			.user {
 				text-align: center;
@@ -61,15 +61,15 @@ const Index = () => (
 			}
 			.user-input {
 				font-size: 48pt;
+				padding: 10px;
+				height: 55px;
+				width: calc(80vw - 40px);
 				background-color: #000;
 				color: #fff;
-				height: 55px;
-				padding: 10px;
 				outline: none;
 				box-shadow: none;
 				border-radius: 4px;
 				border-color: #fff;
-				width: calc(80vw - 40px);
 			}
 			.register {
 				text-align: center;
