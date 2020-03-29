@@ -1,6 +1,20 @@
 import Link from 'next/link';
+import { connect } from 'react-redux';
+import { reduxForm, Field } from 'redux-form';
+import { compose } from 'recompose';
 
 import Layout from '../components/Layout';
+
+import login from '../redux/api/apiCalls';
+import store from '../redux/rootReducer';
+
+const connectToRedux = connect(state => ({
+	formValue: state.form.values,
+}));
+
+const withReduxForm = reduxForm({
+	form: 'login',
+});
 
 const Index = () => (
 	<Layout>
@@ -10,7 +24,7 @@ const Index = () => (
 		<div className="login">
 			<div className="user">
 				<span className="user-label">Phone Number</span>
-				<input className="user-input" type="text" name="phone" placeholder="Enter phone number..." />
+				<Field name="username" className="user-input" component="input" type="text" placeholder="Enter phone number..." />
 			</div>
 			<Link href="/customer">
 				<button className="login-button">LOGIN</button>
@@ -80,4 +94,6 @@ const Index = () => (
 	</Layout>
 );
 
-export default Index;
+const enhance = compose(connectToRedux, withReduxForm);
+
+export default enhance(Index);

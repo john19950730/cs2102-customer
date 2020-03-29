@@ -13,7 +13,11 @@ const Customer = () => (
 			<table>
 				<tr>
 					<td><button className="new-order-button"><NewOrder /><div>MAKE NEW ORDER</div></button></td>
-					<td><button className="check-order-button"><CheckOrder /><div>CHECK CURRENT ORDER</div></button></td>
+					<td>
+						<Link href="/orders">
+							<button className="check-order-button"><CheckOrder /><div>CHECK CURRENT ORDER</div></button>
+						</Link>
+					</td>
 				</tr>
 			</table>
 		</div>
