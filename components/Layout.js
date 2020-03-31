@@ -1,5 +1,3 @@
-import { Provider } from 'react-redux';
-
 import Header from './Header';
 
 const Layout = ({ children }) => (

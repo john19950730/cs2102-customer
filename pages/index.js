@@ -1,12 +1,11 @@
 import Link from 'next/link';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import { compose } from 'recompose';
+import { compose, withProps } from 'recompose';
 
 import Layout from '../components/Layout';
 
 import login from '../redux/api/apiCalls';
-import store from '../redux/rootReducer';
 
 const connectToRedux = connect(state => ({
 	formValue: state.form.values,
@@ -24,7 +23,7 @@ const Index = () => (
 		<div className="login">
 			<div className="user">
 				<span className="user-label">Phone Number</span>
-				<Field name="username" className="user-input" component="input" type="text" placeholder="Enter phone number..." />
+				<span className="user-input"><Field name="username" component="input" type="text" placeholder="Enter phone number..." /></span>
 			</div>
 			<Link href="/customer">
 				<button className="login-button">LOGIN</button>

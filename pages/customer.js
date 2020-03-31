@@ -45,6 +45,7 @@ const Customer = () => (
 			}
 			.customer table tr td button {
 				width: 100%;
+				height: 250px;
 				padding: 12px;
 				font-size: 24pt;
 				background-color: #000;
