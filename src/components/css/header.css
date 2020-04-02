@@ -1,0 +1,17 @@
+.header .main {
+	font-family: Arial, sans-serif;
+}
+.header .main .welcome {
+	font-size: 24pt;
+	padding: 20px;
+	background-color: #123456;
+	color: #efab78;
+}
+.header .main .name {
+	font-size: 48pt;
+	font-weight: 700;
+	text-align: right;
+	padding: 30px;
+	background-color: #112233;
+	color: #aaa;
+}
