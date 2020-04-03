@@ -7,21 +7,24 @@ import { compose, withProps } from 'recompose';
 
 import Layout from '../components/Layout';
 
-import { login } from '../redux/api/apiCalls';
+import { loginWithUsername } from '../redux/state/customer.state';
 
-const connectToRedux = connect(state => ({
-	values: getFormValues('login')(state),
-}));
+const connectToRedux = connect(
+	state => ({
+		values: getFormValues('login')(state),
+	}),
+	dispatch => ({
+		login: ({ username }) => dispatch(loginWithUsername({ username })),
+	}),
+);
 
-const withHandleSubmit = withProps(({ values }) => ({
+const withHandleSubmit = withProps(({ values, login }) => ({
 	onSubmit: e => {
 		e.preventDefault();
 		if (!values) {
 			return;
 		}
-		login(values)
-			.then(console.log)
-			.catch(() => alert('Login has failed!'));
+		login(values);
 	},
 }));
 
