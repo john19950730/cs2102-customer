@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Login from './pages/login';
+import Index from './pages/index';
 import Register from './pages/register';
 
 const App = () => (
@@ -12,7 +12,7 @@ const App = () => (
 					<Register />
 				</Route>
 				<Route path="/">
-					<Login />
+					<Index />
 				</Route>
 			</Switch>
 		</div>

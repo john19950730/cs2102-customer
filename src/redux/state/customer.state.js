@@ -19,6 +19,10 @@ export const loginWithUsername = ({ username }) => (dispatch) => {
 		.catch(() => alert('Error has occurred during login!'));
 };
 
+export const registerNewUser = ({ username, name, creditCard }) => (dispatch) => {
+
+};
+
 export const setLoggedInCustomer = customer => ({ type: 'SET_CUSTOMER', customer });
 
 const customer = handleAction(
@@ -26,7 +30,7 @@ const customer = handleAction(
 	(state, action) => ({
 		customer: action.customer,
 	}),
-	null,
+	{},
 );
 
 export default combineReducers({

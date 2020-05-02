@@ -1,3 +1,5 @@
+import React from 'react';
+
 const CheckOrder = () => (
 	<svg width="65" height="75">
 		<g stroke-width="3" fill="#000" stroke="white">

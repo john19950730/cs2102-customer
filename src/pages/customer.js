@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import React from 'react';
 
 import Layout from '../components/Layout';
 import NewOrder from '../components/svg/NewOrder';
@@ -14,9 +14,7 @@ const Customer = () => (
 				<tr>
 					<td><button className="new-order-button"><NewOrder /><div>MAKE NEW ORDER</div></button></td>
 					<td>
-						<Link href="/orders">
-							<button className="check-order-button"><CheckOrder /><div>CHECK CURRENT ORDER</div></button>
-						</Link>
+						<button className="check-order-button"><CheckOrder /><div>CHECK CURRENT ORDER</div></button>
 					</td>
 				</tr>
 			</table>
