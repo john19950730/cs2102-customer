@@ -1,8 +1,33 @@
-import Link from 'next/link';
+import React from 'react';
+import './css/orders.css';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Layout from '../components/Layout';
+import OrderItem from '../components/OrderItem';
+import Home from '../components/svg/Home';
+import ShowAllOrders from '../components/svg/ShowAllOrders';
+import HideCompletedOrders from '../components/svg/HideCompletedOrders';
 
-const Orders = () => (
+import {
+	customerOrdersSelector,
+	showAllOrdersSelector,
+	toggleShowAllOrders,
+} from '../redux/state/customer.state';
+
+const connectToRedux = connect(
+	state => ({
+		orders: customerOrdersSelector(state),
+		showAll: showAllOrdersSelector(state),
+	}),
+	dispatch => ({
+		toggleShowAll: () => {
+			dispatch(toggleShowAllOrders());
+		},
+	}),
+);
+
+const Orders = ({ orders, showAll, toggleShowAll }) => (
 	<Layout>
 		<div className="orders">
 			<div className="orders-label">
@@ -17,28 +42,32 @@ const Orders = () => (
 						<td>Time Order Delivered</td>
 					</tr>
 				</thead>
+				<tbody>
+
+				</tbody>
 			</table>
+			<div className="toggle-show">
+				{!showAll && <button className="show-all" onClick={toggleShowAll}>
+					<span className="icon"><ShowAllOrders /></span>
+					Show All Orders
+				</button>}
+				{!!showAll && <button className="hide-completed" onClick={toggleShowAll}>
+					<span className="icon"><HideCompletedOrders /></span>
+					Hide Completed Orders
+				</button>}
+			</div>
+			<div className="bottom-bar">
+				<Link to="/">
+					<button className="back-button">
+						<span className="icon"><Home /></span>
+						Back to Home
+					</button>
+				</Link>
+			</div>
 		</div>
-		<style jsx>{`
-			.orders {
-				font-family: Arial, sans-serif;
-				background-color: #000;
-			}
-			.orders-label {
-				color: #fff;
-				font-size: 12pt;
-				padding: 8px;
-			}
-			.orders-table {
-				width: 100%;
-			}
-			.orders-table thead {
-				font-weight: 500;
-				text-align: center;
-				color: #bbb;
-			}
-		`}</style>
 	</Layout>
 );
 
-export default Orders;
+const enhance = connectToRedux;
+
+export default enhance(Orders);

@@ -13,8 +13,9 @@ const connectToRedux = connect(state => ({
 
 const Index = ({ customer }) => (
 	<div>
-		{Object.keys(customer).length === 0 && <Login />}
-		{Object.keys(customer).length > 0 && <Customer />}
+		{//Object.keys(customer).length === 0 && <Login />}
+		//Object.keys(customer).length > 0 && 
+		<Customer />}
 	</div>
 );
 
