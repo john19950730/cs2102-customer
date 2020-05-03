@@ -26,7 +26,7 @@
 	top: 0;
 	left: 0;
 	width: 100%;
-	background-color: #000;
+	background-color: #123456;
 	font-family: Arial, sans-serif;
 }
 a {
@@ -61,4 +61,7 @@ a {
 	box-shadow: none;
 	border-color: #999;
 	cursor: pointer;
+}
+.logout-button svg {
+	margin-right: 16px;
 }

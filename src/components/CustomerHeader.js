@@ -3,6 +3,8 @@ import './css/header.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import Logout from './svg/Logout';
+
 import { setLoggedInCustomer, LOGOUT_CUSTOMER } from '../redux/state/customer.state';
 
 const connectToRedux = connect(
@@ -25,6 +27,7 @@ const CustomerHeader = ({ customer, logout }) => (
 		<div className="logout">
 			<Link to="/">
 				<button className="logout-button" onClick={logout}>
+					<Logout />
 					LOGOUT
 				</button>
 			</Link>

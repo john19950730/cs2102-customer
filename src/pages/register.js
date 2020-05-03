@@ -1,6 +1,6 @@
 import React from 'react';
 import './css/register.css';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { branch, compose, renderComponent } from 'recompose';
 
