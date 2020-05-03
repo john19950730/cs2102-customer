@@ -4,8 +4,6 @@ import { path } from 'lodash/fp';
 
 import { login } from '../api/apiCalls';
 
-export const LOGOUT_CUSTOMER = {};
-
 export const loggedInCustomerSelector = path('customer.customer');
 export const customerOrdersSelector = path('customer.orders');
 export const showAllOrdersSelector = path('customer.showAll');
@@ -30,11 +28,12 @@ export const registerNewUser = ({ username, name, creditCard }) => (dispatch) =>
 export const setLoggedInCustomer = customer => ({ type: 'SET_CUSTOMER', customer });
 export const setCustomerOrders = orders => ({ type: 'SET_CUSTOMER_ORDERS', orders });
 export const toggleShowAllOrders = () => ({ type: 'TOGGLE_SHOW_ALL_ORDERS' });
+export const logoutCustomer = () => ({ type: 'RESET_CUSTOMER' });
 
 const customer = handleAction(
 	'SET_CUSTOMER',
 	(state, { customer }) => customer,
-	//LOGOUT_CUSTOMER,
+	//{},
 	// test data:
 	{
 		cid: 'aaaaaa',
@@ -71,8 +70,16 @@ const showAll = handleAction(
 	false,
 );
 
-export default combineReducers({
-	customer,
-	orders,
-	showAll,
-});
+const customerReducer = (state, action) => {
+	if (action.type === 'RESET_CUSTOMER') {
+		state = undefined;
+	}
+
+	return combineReducers({
+		customer,
+		orders,
+		showAll,
+	})(state, action);
+}
+
+export default customerReducer;

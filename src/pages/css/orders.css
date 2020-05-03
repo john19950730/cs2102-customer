@@ -24,9 +24,13 @@
 	color: #192;
 }
 .toggle-show {
+	position: absolute;
+	top: 101px;
+	right: 6px;
 	padding: 6px;
 }
 .toggle-show button {
+	width: 200px;
 	padding: 6px;
 	background-color: #000;
 	color: #ddd;

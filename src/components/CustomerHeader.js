@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 
 import Logout from './svg/Logout';
 
-import { setLoggedInCustomer, LOGOUT_CUSTOMER } from '../redux/state/customer.state';
+import { logoutCustomer } from '../redux/state/customer.state';
 
 const connectToRedux = connect(
 	state => ({}),
 	dispatch => ({
 		logout: () => {
-			dispatch(setLoggedInCustomer(LOGOUT_CUSTOMER));
+			dispatch(logoutCustomer());
 		},
 	}),
 );
