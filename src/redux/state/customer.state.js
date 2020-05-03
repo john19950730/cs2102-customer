@@ -4,6 +4,11 @@ import { path } from 'lodash/fp';
 
 import { login } from '../api/apiCalls';
 
+export const SET_CUSTOMER = 'SET_CUSTOMER';
+export const SET_CUSTOMER_ORDERS = 'SET_CUSTOMER_ORDERS';
+export const TOGGLE_SHOW_ALL_ORDERS = 'TOGGLE_SHOW_ALL_ORDERS';
+export const RESET_CUSTOMER = 'RESET_CUSTOMER';
+
 export const loggedInCustomerSelector = path('customer.customer');
 export const customerOrdersSelector = path('customer.orders');
 export const showAllOrdersSelector = path('customer.showAll');
@@ -25,14 +30,14 @@ export const registerNewUser = ({ username, name, creditCard }) => (dispatch) =>
 
 };
 
-export const setLoggedInCustomer = customer => ({ type: 'SET_CUSTOMER', customer });
-export const setCustomerOrders = orders => ({ type: 'SET_CUSTOMER_ORDERS', orders });
-export const toggleShowAllOrders = () => ({ type: 'TOGGLE_SHOW_ALL_ORDERS' });
-export const logoutCustomer = () => ({ type: 'RESET_CUSTOMER' });
+export const setLoggedInCustomer = customer => ({ type: SET_CUSTOMER, payload: customer });
+export const setCustomerOrders = orders => ({ type: SET_CUSTOMER_ORDERS, payload: orders });
+export const toggleShowAllOrders = () => ({ type: TOGGLE_SHOW_ALL_ORDERS });
+export const logoutCustomer = () => ({ type: RESET_CUSTOMER });
 
 const customer = handleAction(
-	'SET_CUSTOMER',
-	(state, { customer }) => customer,
+	SET_CUSTOMER,
+	(state, { payload }) => payload,
 	//{},
 	// test data:
 	{
@@ -44,8 +49,8 @@ const customer = handleAction(
 );
 
 const orders = handleAction(
-	'SET_CUSTOMER_ORDERS',
-	(state, { orders }) => orders,
+	SET_CUSTOMER_ORDERS,
+	(state, { payload }) => payload,
 	//[],
 	// test data:
 	[
@@ -65,13 +70,13 @@ const orders = handleAction(
 );
 
 const showAll = handleAction(
-	'TOGGLE_SHOW_ALL_ORDERS',
+	TOGGLE_SHOW_ALL_ORDERS,
 	state => (!state),
 	false,
 );
 
 const customerReducer = (state, action) => {
-	if (action.type === 'RESET_CUSTOMER') {
+	if (action.type === RESET_CUSTOMER) {
 		state = undefined;
 	}
 

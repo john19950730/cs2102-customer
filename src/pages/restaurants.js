@@ -1,13 +1,17 @@
-import Link from 'next/link';
+import React from 'react';
+import './css/restaurants.css';
 
-import Layout from '../components/Layout';
+import RestaurantItem from '../components/RestaurantItem';
 
 const Restaurants = () => (
-	<Layout>
+	<div className="restaurants">
 		<div className="restaurants-label">
-			RESTAURANTS
+			<span className="step-number">1</span>RESTAURANTS
 		</div>
-	</Layout>
+		<ul className="restaurants-list">
+			{[{name:'McDunkin'}, {name:'Doughnalds'}].map(e => (<RestaurantItem restaurant={e}/>))}
+		</ul>
+	</div>
 );
 
 export default Restaurants;

@@ -4,11 +4,15 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Index from './pages/index';
 import Register from './pages/register';
 import Orders from './pages/orders';
+import NewOrder from './pages/newOrder';
 
 const App = () => (
 	<Router>
 		<div className="App">
 			<Switch>
+				<Route path="/newOrder">
+					<NewOrder />
+				</Route>
 				<Route path="/orders">
 					<Orders />
 				</Route>

@@ -1,0 +1,36 @@
+.restaurants {
+	font-family: Arial, sans-serif;
+	margin-top: 95px;
+	background-color: #000;
+}
+.restaurants-label {
+	color: #bbb;
+	font-size: 64pt;
+
+}
+.step-number {
+	background-color: #f69;
+}
+.restaurants-list {
+	color: #fff;
+	font-size: 20pt;
+}
+
+.restaurants-list li {
+	list-style: none;
+}
+
+.restaurant-button {
+	width: calc(100% - 40px);
+	height: 200px;
+	padding: 12px;
+	margin-bottom: 40px;
+	font-size: 40pt;
+	background-color: #000;
+	color: #ddd;
+	outline: none;
+	box-shadow: none;
+	border-radius: 20px;
+	border-color: #fff;
+	cursor: pointer;
+}

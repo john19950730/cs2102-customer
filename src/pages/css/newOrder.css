@@ -1,0 +1,10 @@
+.step-number {
+	color: #000;
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	margin-right: 32px;
+	text-align: center;
+	font-weight: 700;
+	font-size: 64pt;
+}

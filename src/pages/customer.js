@@ -13,7 +13,7 @@ const Customer = () => (
 				<tbody>
 					<tr>
 						<td>
-							<Link to="/new">
+							<Link to="/newOrder">
 								<button className="new-order-button">
 									<NewOrder />
 									<div>MAKE NEW ORDER</div>

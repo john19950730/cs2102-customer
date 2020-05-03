@@ -3,10 +3,12 @@ import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 
 import customer from './state/customer.state';
+import order from './state/order.state';
 
 const rootReducer = combineReducers({
 	form: formReducer,
 	customer,
+	order,
 });
 
 const store = createStore(rootReducer, compose(
