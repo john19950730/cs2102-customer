@@ -1,11 +1,21 @@
 import React from 'react';
-import Header from './Header';
+import { connect } from 'react-redux';
 
-const Layout = ({ children }) => (
+import Header from './Header';
+import CustomerHeader from './CustomerHeader';
+
+import { loggedInCustomerSelector } from '../redux/state/customer.state';
+
+const connectToRedux = connect(state => ({
+	customer: loggedInCustomerSelector(state),
+}));
+
+const Layout = ({ customer, children }) => (
 	<div>
-		<Header />
+		{Object.keys(customer).length === 0 && <Header />}
+		{Object.keys(customer).length > 0 && <CustomerHeader customer={customer} />}
 		{children}
 	</div>
 );
 
-export default Layout;
+export default connectToRedux(Layout);

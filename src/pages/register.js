@@ -1,8 +1,22 @@
 import React from 'react';
 import './css/register.css';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { branch, compose, renderComponent } from 'recompose';
 
 import Layout from '../components/Layout';
+import RedirectToHome from '../components/RedirectToHome';
+
+import { loggedInCustomerSelector } from '../redux/state/customer.state';
+
+const connectToRedux = connect(state => ({
+	customer: loggedInCustomerSelector(state),
+}));
+
+const loginCheck = branch(
+	({ customer }) => (Object.keys(customer).length > 0),
+	renderComponent(RedirectToHome),
+);
 
 const Register = () => (
 	<Layout>
@@ -26,11 +40,13 @@ const Register = () => (
 					</tr>
 				</tbody>
 			</table>
-			<Link to="/login">
+			<Link to="/">
 				<button className="register-button">REGISTER</button>
 			</Link>
 		</div>
 	</Layout>
 );
 
-export default Register;
+const enhance = compose(connectToRedux, loginCheck);
+
+export default enhance(Register);

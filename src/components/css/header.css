@@ -1,3 +1,9 @@
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
 .header .main {
 	font-family: Arial, sans-serif;
 }
@@ -14,4 +20,45 @@
 	padding: 30px;
 	background-color: #112233;
 	color: #aaa;
+}
+.customer-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #000;
+	font-family: Arial, sans-serif;
+}
+a {
+	text-decoration: none;
+}
+.customer-label {
+	color: #fff;
+	font-size: 12pt;
+	padding: 8px;
+}
+.customer-name {
+	padding: 12px;
+	font-size: 24pt;
+	font-weight: 700;
+	color: #e9c117;
+}
+.logout {
+	position: absolute;
+	color: #fff;
+	top: 0;
+	right: 0;
+	height: 100%;
+}
+.logout-button {
+	height: 100%;
+	width: 300px;
+	font-size: 28pt;
+	font-weight: 700;
+	background-color: #d82;
+	color: #ddd;
+	outline: none;
+	box-shadow: none;
+	border-color: #999;
+	cursor: pointer;
 }

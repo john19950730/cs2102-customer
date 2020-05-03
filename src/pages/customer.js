@@ -9,9 +9,6 @@ import CheckOrder from '../components/svg/CheckOrder';
 const Customer = () => (
 	<Layout>
 		<div className="customer">
-			<div className="customer-label">
-				Dear <span className="customer-name">ASDFGHJKL</span>, would you like to:
-			</div>
 			<table>
 				<tbody>
 					<tr>

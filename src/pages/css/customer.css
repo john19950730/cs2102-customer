@@ -1,15 +1,7 @@
 .customer {
 	font-family: Arial, sans-serif;
 	background-color: #000;
-}
-.customer-label {
-	color: #fff;
-	font-size: 12pt;
-	padding: 8px;
-}
-.customer-name {
-	font-weight: 700;
-	color: #e9c117;
+	margin-top: 95px;
 }
 .customer table {
 	width: 100%;
@@ -30,4 +22,5 @@
 	box-shadow: none;
 	border-radius: 12px;
 	border-color: #fff;
+	cursor: pointer;
 }

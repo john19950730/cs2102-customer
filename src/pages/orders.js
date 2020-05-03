@@ -43,7 +43,7 @@ const Orders = ({ orders, showAll, toggleShowAll }) => (
 					</tr>
 				</thead>
 				<tbody>
-
+					{orders.map(order => (<OrderItem order={order} showAll={showAll} />))}
 				</tbody>
 			</table>
 			<div className="toggle-show">
