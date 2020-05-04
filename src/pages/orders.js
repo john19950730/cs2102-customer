@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 
 import Layout from '../components/Layout';
 import OrderItem from '../components/OrderItem';
-import Home from '../components/svg/Home';
+import BackToHome from '../components/BackToHome';
+
 import ShowAllOrders from '../components/svg/ShowAllOrders';
 import HideCompletedOrders from '../components/svg/HideCompletedOrders';
 
@@ -57,12 +58,7 @@ const Orders = ({ orders, showAll, toggleShowAll }) => (
 				</button>}
 			</div>
 			<div className="bottom-bar">
-				<Link to="/">
-					<button className="back-button">
-						<span className="icon"><Home /></span>
-						Back to Home
-					</button>
-				</Link>
+				<BackToHome />
 			</div>
 		</div>
 	</Layout>
