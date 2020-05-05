@@ -18,4 +18,4 @@ const Index = ({ customer }) => (
 	</div>
 );
 
-export default connectToRedux(withProps(console.log)(Index));
+export default connectToRedux(Index);
