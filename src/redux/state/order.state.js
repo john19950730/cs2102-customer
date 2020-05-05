@@ -1,6 +1,6 @@
 import { handleAction, handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
-import { path } from 'lodash/fp';
+import { find, flow, path } from 'lodash/fp';
 
 export const SET_RESTAURANT_LIST = 'SET_RESTAURANT_LIST';
 export const RESET_RESTAURANT_LIST = 'RESET_RESTAURANT_LIST';
@@ -13,6 +13,7 @@ export const RESET_NEW_ORDER = 'RESET_NEW_ORDER';
 
 export const allRestaurantsSelector = path('order.restaurantList');
 export const restaurantFoodItemsSelector = path('order.foodItemsList');
+export const foodItemSelectorById = id => flow(path('order.foodItemsList'), find(item => item.id === id));
 export const orderRestaurantSelector = path('order.restaurant');
 export const orderFoodItemsSelector = path('order.foodItems');
 
@@ -61,7 +62,7 @@ const restaurant = handleAction(
 
 const foodItems = handleAction(
 	SET_FOOD_ORDER,
-	(State, { payload }) => payload,
+	(state, { payload }) => payload,
 	{},
 );
 

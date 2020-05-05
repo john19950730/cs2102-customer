@@ -3,7 +3,7 @@ import './css/foodItems.css';
 import { connect } from 'react-redux';
 import { reduxForm, getFormValues, Field } from 'redux-form';
 import { compose } from 'recompose';
-import { map, sum } from 'lodash/fp';
+import { map, sum, pickBy } from 'lodash/fp';
 
 import FoodItem from '../components/FoodItem';
 
@@ -25,7 +25,7 @@ const connectToRedux = connect(
 			dispatch(resetNewOrder());
 		},
 		confirmOrder: order => () => {
-			dispatch(setFoodOrder(order));
+			dispatch(setFoodOrder(pickBy(parseInt)(order)));
 		},
 	}),
 );
