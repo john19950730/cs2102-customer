@@ -3,13 +3,17 @@ import './css/foodItems.css';
 import { connect } from 'react-redux';
 import { reduxForm, getFormValues, Field } from 'redux-form';
 import { compose } from 'recompose';
+import { debounce } from 'lodash';
 import { map, sum, pickBy } from 'lodash/fp';
 
 import FoodItem from '../components/FoodItem';
 
 import {
-	orderRestaurantSelector,
 	restaurantFoodItemsSelector,
+	fetchRestaurantFoodItemsList,
+} from '../redux/state/restaurantFood.state';
+import {
+	orderRestaurantSelector,
 	setFoodOrder,
 	resetNewOrder,
 } from '../redux/state/order.state';
@@ -21,6 +25,9 @@ const connectToRedux = connect(
 		foodItemsList: restaurantFoodItemsSelector(state),
 	}),
 	dispatch => ({
+		loadRestaurantFoodItems: debounce(() => {
+			dispatch(fetchRestaurantFoodItemsList());
+		}, 500, { leading: true, trailing: false }),
 		resetOrder: () => {
 			dispatch(resetNewOrder());
 		},
@@ -34,8 +41,19 @@ const withReduxForm = reduxForm({
 	form: 'foodItems',
 });
 
-const FoodItems = ({ hidden, restaurant, foodItemsList, orderFormValues, resetOrder, confirmOrder }) => (
-	<div className={`fooditems ${hidden && 'hidden'}`}>
+const FoodItems = ({
+	hidden,
+	restaurant,
+	foodItemsList,
+	orderFormValues,
+	loadRestaurantFoodItems,
+	resetOrder,
+	confirmOrder,
+}) => {
+
+	loadRestaurantFoodItems();
+
+	return (<div className={`fooditems ${hidden && 'hidden'}`}>
 		<div className="fooditems-label">
 			<span className="step-number">2</span>FOOD ITEMS
 		</div>
@@ -63,8 +81,8 @@ const FoodItems = ({ hidden, restaurant, foodItemsList, orderFormValues, resetOr
 			<button className="back-restaurants" onClick={resetOrder}>Back to Restaurants</button>
 			<button className={`order-button ${(!orderFormValues || sum(map(parseInt)(orderFormValues)) === 0) && 'hidden'}`} onClick={confirmOrder(orderFormValues)}>Place Order</button>
 		</div>
-	</div>
-);
+	</div>);
+};
 
 const enhance = compose(
 	connectToRedux,

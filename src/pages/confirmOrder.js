@@ -7,7 +7,8 @@ import { find, map, sum } from 'lodash';
 
 import OrderFoodItem from '../components/OrderFoodItem';
 
-import { orderFoodItemsSelector, restaurantFoodItemsSelector, resetFoodOrder, postFoodOrder } from '../redux/state/order.state';
+import { restaurantFoodItemsSelector } from '../redux/state/restaurantFood.state';
+import { orderFoodItemsSelector, resetFoodOrder, postFoodOrder } from '../redux/state/order.state';
 
 const connectToRedux = connect(
 	state => ({
