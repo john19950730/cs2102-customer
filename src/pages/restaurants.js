@@ -27,7 +27,7 @@ const Restaurants = ({ restaurants, abortOrder }) => (
 			{restaurants.map(e => (<RestaurantItem key={e.id} restaurant={e}/>))}
 		</ul>
 		<div className="bottom-bar">
-			<BackToHome onClick={abortOrder} />	
+			<BackToHome onClick={abortOrder} />
 		</div>
 	</div>
 );
