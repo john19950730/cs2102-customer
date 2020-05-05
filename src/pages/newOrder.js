@@ -22,9 +22,9 @@ const withStepsDone = withProps(({ restaurant, foodItems }) => ({
 
 const NewOrder = ({ hasSelectedRestaurant, hasSelectedFoodItems }) => (
 	<Layout>
-		{!hasSelectedRestaurant && !hasSelectedFoodItems && <Restaurants />}
-		{hasSelectedRestaurant && !hasSelectedFoodItems && <FoodItems />}
-		{hasSelectedRestaurant && hasSelectedFoodItems && <ConfirmOrder />}
+		<Restaurants hidden={hasSelectedRestaurant || hasSelectedFoodItems} />
+		<FoodItems hidden={!hasSelectedRestaurant || hasSelectedFoodItems} />
+		<ConfirmOrder hidden={!hasSelectedRestaurant || !hasSelectedFoodItems} />
 	</Layout>
 );
 

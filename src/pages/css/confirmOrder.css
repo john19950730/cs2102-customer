@@ -3,6 +3,9 @@
 	margin-top: 95px;
 	background-color: #000;
 }
+.confirm.hidden {
+	display: none;
+}
 .confirm-label {
 	color: #bbb;
 	font-size: 64pt;
@@ -14,4 +17,28 @@
 }
 .confirm-label .step-number {
 	background-color: #69f;
+}
+.amend-order {
+	font-size: 24pt;
+	margin: 12px;
+	padding: 12px;
+	background-color: #000;
+	color: #ddd;
+	outline: none;
+	box-shadow: none;
+	border-radius: 6px;
+	border-color: #fff;
+}
+.confirm-order {
+	position: absolute;
+	right: 0;
+	font-size: 24pt;
+	margin: 12px;
+	padding: 12px;
+	background-color: #000;
+	color: #ddd;
+	outline: none;
+	box-shadow: none;
+	border-radius: 6px;
+	border-color: #fff;
 }

@@ -18,8 +18,8 @@ const connectToRedux = connect(
 	}),
 );
 
-const Restaurants = ({ restaurants, abortOrder }) => (
-	<div className="restaurants">
+const Restaurants = ({ hidden, restaurants, abortOrder }) => (
+	<div className={`restaurants ${hidden && 'hidden'}`}>
 		<div className="restaurants-label">
 			<span className="step-number">1</span>RESTAURANTS
 		</div>

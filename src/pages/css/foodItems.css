@@ -3,6 +3,9 @@
 	margin-top: 95px;
 	background-color: #000;
 }
+.fooditems.hidden {
+	display: none;
+}
 .fooditems-label {
 	color: #bbb;
 	font-size: 64pt;
@@ -79,9 +82,6 @@
 	border-radius: 3px;
 	border-color: #fff;
 }
-.fooditem-remove-button.hidden {
-	visibility: hidden;
-}
 .back-restaurants {
 	font-size: 24pt;
 	margin: 12px;
@@ -93,7 +93,7 @@
 	border-radius: 6px;
 	border-color: #fff;
 }
-.confirm-order {
+.order-button {
 	position: absolute;
 	right: 0;
 	font-size: 24pt;
@@ -105,4 +105,7 @@
 	box-shadow: none;
 	border-radius: 6px;
 	border-color: #fff;
+}
+.order-button.hidden {
+	visibility: hidden;
 }

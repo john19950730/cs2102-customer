@@ -3,6 +3,7 @@ import './css/foodItems.css';
 import { connect } from 'react-redux';
 import { reduxForm, getFormValues, Field } from 'redux-form';
 import { compose } from 'recompose';
+import { map, sum } from 'lodash/fp';
 
 import FoodItem from '../components/FoodItem';
 
@@ -33,8 +34,8 @@ const withReduxForm = reduxForm({
 	form: 'foodItems',
 });
 
-const FoodItems = ({ restaurant, foodItemsList, orderFormValues, resetOrder, confirmOrder }) => (
-	<div className="fooditems">
+const FoodItems = ({ hidden, restaurant, foodItemsList, orderFormValues, resetOrder, confirmOrder }) => (
+	<div className={`fooditems ${hidden && 'hidden'}`}>
 		<div className="fooditems-label">
 			<span className="step-number">2</span>FOOD ITEMS
 		</div>
@@ -60,7 +61,7 @@ const FoodItems = ({ restaurant, foodItemsList, orderFormValues, resetOrder, con
 		</table>
 		<div className="bottom-bar">
 			<button className="back-restaurants" onClick={resetOrder}>Back to Restaurants</button>
-			<button className="confirm-order" onClick={confirmOrder(orderFormValues)}>Confirm Order</button>
+			<button className={`order-button ${(!orderFormValues || sum(map(parseInt)(orderFormValues)) === 0) && 'hidden'}`} onClick={confirmOrder(orderFormValues)}>Place Order</button>
 		</div>
 	</div>
 );

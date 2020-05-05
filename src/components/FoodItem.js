@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, withProps } from 'recompose';
 
 import { orderFoodItemsSelector } from '../redux/state/order.state';
 
