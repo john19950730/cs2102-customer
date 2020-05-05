@@ -1,6 +1,6 @@
-import { handleAction, handleActions } from 'redux-actions';
+import { handleAction } from 'redux-actions';
 import { combineReducers } from 'redux';
-import { find, flow, path } from 'lodash/fp';
+import { path } from 'lodash/fp';
 
 export const SET_RESTAURANT = 'SET_RESTAURANT';
 export const SET_FOOD_ORDER = 'SET_FOOD_ORDER';
