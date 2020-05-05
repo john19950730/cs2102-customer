@@ -1,12 +1,13 @@
 import React from 'react';
 import './css/confirmOrder.css';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose, withProps } from 'recompose';
 import { find, map, sum } from 'lodash';
 
 import OrderFoodItem from '../components/OrderFoodItem';
 
-import { orderFoodItemsSelector, restaurantFoodItemsSelector, resetFoodOrder } from '../redux/state/order.state';
+import { orderFoodItemsSelector, restaurantFoodItemsSelector, resetFoodOrder, postFoodOrder } from '../redux/state/order.state';
 
 const connectToRedux = connect(
 	state => ({
@@ -17,14 +18,14 @@ const connectToRedux = connect(
 		amendOrder: () => {
 			dispatch(resetFoodOrder());
 		},
-		confirmOrder: () => {
-			// CONFIRM ORDER HANDLER
+		confirmOrder: order => () => {
+			dispatch(postFoodOrder(order));
 		},
 	}),
 );
 
 const withTotalPrice = withProps(({ order, foodItemsList }) => ({
-	totalPrice: sum(map(order, (v, k) => parseInt(v) * find(foodItemsList, item => item.id === k).price)),
+	totalPrice: sum(map(order, (v, k) => parseFloat(v) * parseFloat(find(foodItemsList, item => item.id === k).price))).toFixed(2),
 }));
 
 const ConfirmOrder = ({ hidden, order, totalPrice, amendOrder, confirmOrder }) => (
@@ -56,7 +57,9 @@ const ConfirmOrder = ({ hidden, order, totalPrice, amendOrder, confirmOrder }) =
 		</table>
 		<div className="bottom-bar">
 			<button className="amend-order" onClick={amendOrder}>Back to Food Items</button>
-			<button className="confirm-order" onClick={confirmOrder}>Confirm Order</button>
+			<Link to="/done">
+				<button className="confirm-order" onClick={confirmOrder(order)}>Confirm Order</button>
+			</Link>
 		</div>
 	</div>
 );

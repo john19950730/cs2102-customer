@@ -5,11 +5,15 @@ import Index from './pages/index';
 import Register from './pages/register';
 import Orders from './pages/orders';
 import NewOrder from './pages/newOrder';
+import Done from './pages/done';
 
 const App = () => (
 	<Router>
 		<div className="App">
 			<Switch>
+				<Route path="/done">
+					<Done />
+				</Route>
 				<Route path="/newOrder">
 					<NewOrder />
 				</Route>

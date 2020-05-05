@@ -10,7 +10,7 @@ const connectToRedux = connect((state, { id }) => ({
 const OrderFoodItem = ({ foodItem, quantity }) => (
 	<tr className="confirm-row">
 		<td className="confirm-name">{foodItem.name}</td>
-		<td className="confirm-price">{foodItem.price}</td>
+		<td className="confirm-price">{parseFloat(foodItem.price).toFixed(2)}</td>
 		<td className="confirm-quant">{quantity}</td>
 	</tr>
 );
