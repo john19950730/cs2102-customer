@@ -1,0 +1,32 @@
+.profile {
+	font-family: Arial, sans-serif;
+	background-color: #000;
+	margin-top: 95px;
+}
+.profile-label {
+	padding: 12px;
+	font-size: 24pt;
+	color: #999;
+}
+.profile-edit-form {
+	margin: 0 auto;
+	width: calc(50%);
+	border-collapse: collapse;
+	color: #ccc;
+}
+.profile-edit-form tr td {
+	padding: 6px;
+}
+.save-profile {
+	position: absolute;
+	right: 0;
+	font-size: 24pt;
+	margin: 12px;
+	padding: 12px;
+	background-color: #000;
+	color: #ddd;
+	outline: none;
+	box-shadow: none;
+	border-radius: 6px;
+	border-color: #fff;
+}

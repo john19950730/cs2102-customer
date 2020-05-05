@@ -65,6 +65,7 @@ const customer = handleAction(
 		cid: 'aaaaaa',
 		name: 'ASDFGHJKL',
 		cc: '5555555555555555',
+		phone: '66666666',
 		joinDate: '29 February 2019',
 	},
 );

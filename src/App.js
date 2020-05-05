@@ -6,11 +6,15 @@ import Register from './pages/register';
 import Orders from './pages/orders';
 import NewOrder from './pages/newOrder';
 import Done from './pages/done';
+import Profile from './pages/profile';
 
 const App = () => (
 	<Router>
 		<div className="App">
 			<Switch>
+				<Route path="/profile">
+					<Profile />
+				</Route>
 				<Route path="/done">
 					<Done />
 				</Route>
