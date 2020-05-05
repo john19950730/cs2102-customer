@@ -1,6 +1,5 @@
 import React from 'react';
 import './css/orders.css';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Layout from '../components/Layout';

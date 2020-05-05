@@ -1,0 +1,17 @@
+.confirm {
+	font-family: Arial, sans-serif;
+	margin-top: 95px;
+	background-color: #000;
+}
+.confirm-label {
+	color: #bbb;
+	font-size: 64pt;
+}
+.confirm-intro {
+	color: #999;
+	font-size: 20pt;
+	padding: 20px 0 0 20px;
+}
+.confirm-label .step-number {
+	background-color: #69f;
+}

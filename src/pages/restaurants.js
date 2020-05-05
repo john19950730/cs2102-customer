@@ -23,6 +23,9 @@ const Restaurants = ({ restaurants, abortOrder }) => (
 		<div className="restaurants-label">
 			<span className="step-number">1</span>RESTAURANTS
 		</div>
+		<div className="restaurants-intro">
+			Here is our selection of food outlets:
+		</div>
 		<ul className="restaurants-list">
 			{restaurants.map(e => (<RestaurantItem key={e.id} restaurant={e}/>))}
 		</ul>

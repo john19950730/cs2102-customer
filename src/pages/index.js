@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withProps } from 'recompose';
 
 import Login from './login';
 import Customer from './customer';

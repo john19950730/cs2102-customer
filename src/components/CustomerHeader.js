@@ -6,12 +6,14 @@ import { connect } from 'react-redux';
 import Logout from './svg/Logout';
 
 import { logoutCustomer } from '../redux/state/customer.state';
+import { resetNewOrder } from '../redux/state/order.state';
 
 const connectToRedux = connect(
 	state => ({}),
 	dispatch => ({
 		logout: () => {
 			dispatch(logoutCustomer());
+			dispatch(resetNewOrder());
 		},
 	}),
 );

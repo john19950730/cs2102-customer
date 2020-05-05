@@ -6,9 +6,103 @@
 .fooditems-label {
 	color: #bbb;
 	font-size: 64pt;
-
+}
+.fooditems-intro {
+	color: #999;
+	font-size: 20pt;
+	padding: 20px 0 0 20px;
+}
+.fooditems-intro .restaurant-name {
+	font-weight: 700;
+	color: #fb3;
 }
 .fooditems-label .step-number {
 	background-color: #6f9;
 }
-
+.fooditems-table {
+	margin: 40px;
+	width: calc(100% - 80px);
+	color: #fff;
+	border-collapse: collapse;
+}
+.fooditems-table thead {
+	color: #888;
+	font-weight: 700;
+}
+.fooditems-table thead tr td {
+	padding: 10px;
+}
+.fooditem-row:nth-child(odd) {
+	background-color: #222;
+}
+.fooditem-row:nth-child(even) {
+	background-color: #444;
+}
+.fooditem-name {
+	padding: 10px;
+}
+.fooditem-price {
+	width: 35px;
+	padding-right: 20px;
+	text-align: right;
+}
+.fooditem-quant {
+	width: 60px;
+	padding-right: 20px;
+	text-align: right;
+}
+.fooditem-quant-input {
+	text-align: right;
+}
+.fooditem-add {
+	width: 80px;
+}
+.fooditem-remove {
+	width: 20px;
+	padding: 10px;
+}
+.fooditem-add-button {
+	width: 100%;
+	background-color: #000;
+	color: #ddd;
+	outline: none;
+	box-shadow: none;
+	border-radius: 3px;
+	border-color: #fff;
+}
+.fooditem-remove-button {
+	width: 100%;
+	background-color: #000;
+	color: #ddd;
+	outline: none;
+	box-shadow: none;
+	border-radius: 3px;
+	border-color: #fff;
+}
+.fooditem-remove-button.hidden {
+	visibility: hidden;
+}
+.back-restaurants {
+	font-size: 24pt;
+	margin: 12px;
+	padding: 12px;
+	background-color: #000;
+	color: #ddd;
+	outline: none;
+	box-shadow: none;
+	border-radius: 6px;
+	border-color: #fff;
+}
+.confirm-order {
+	position: absolute;
+	right: 0;
+	font-size: 24pt;
+	margin: 12px;
+	padding: 12px;
+	background-color: #000;
+	color: #ddd;
+	outline: none;
+	box-shadow: none;
+	border-radius: 6px;
+	border-color: #fff;
+}
