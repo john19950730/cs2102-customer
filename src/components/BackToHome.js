@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 import Home from './svg/Home';
 
-const BackToHome = () => (
+const BackToHome = ({ onClick }) => (
 	<Link to="/">
-		<button className="back-button">
+		<button className="back-button" onClick={onClick}>
 			<span className="icon"><Home /></span>
 			Back to Home
 		</button>

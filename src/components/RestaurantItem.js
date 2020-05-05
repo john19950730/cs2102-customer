@@ -1,9 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const RestaurantItem = ({ restaurant }) => (
+import { setRestaurant } from '../redux/state/order.state';
+
+const connectToRedux = connect(null, (dispatch, { restaurant }) => ({
+	setAsRestaurant: () => {
+		dispatch(setRestaurant(restaurant));
+	},
+}));
+
+const RestaurantItem = ({ restaurant, setAsRestaurant }) => (
 	<li>
-		<button className="restaurant-button">{restaurant.name}</button>
+		<button className="restaurant-button" onClick={setAsRestaurant}>{restaurant.name}</button>
 	</li>
 );
 
-export default RestaurantItem;
+export default connectToRedux(RestaurantItem);
