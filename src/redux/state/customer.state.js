@@ -30,6 +30,27 @@ export const registerNewUser = ({ username, name, creditCard }) => (dispatch) =>
 
 };
 
+export const fetchCustomerOrders = () => (dispatch, getState) => {
+	const state = getState();
+	// simulate server activity with test data
+	return new Promise(resolve => setTimeout(resolve, 1000)).then(() => {
+		dispatch(setCustomerOrders([
+			{
+				id: 'b51',
+				address: 'Area 51',
+				orderPlaced: '30 February 2020',
+				orderDelivered: null,
+			},
+			{
+				id: 'a123',
+				address: '123 Sesame Street',
+				orderPlaced: '31 September 2019',
+				orderDelivered: '32 September 2019',
+			},
+		]));
+	});
+};
+
 export const setLoggedInCustomer = customer => ({ type: SET_CUSTOMER, payload: customer });
 export const setCustomerOrders = orders => ({ type: SET_CUSTOMER_ORDERS, payload: orders });
 export const toggleShowAllOrders = () => ({ type: TOGGLE_SHOW_ALL_ORDERS });
@@ -51,22 +72,7 @@ const customer = handleAction(
 const orders = handleAction(
 	SET_CUSTOMER_ORDERS,
 	(state, { payload }) => payload,
-	//[],
-	// test data:
-	[
-		{
-			id: 'b51',
-			address: 'Area 51',
-			orderPlaced: '30 February 2020',
-			orderDelivered: null,
-		},
-		{
-			id: 'a123',
-			address: '123 Sesame Street',
-			orderPlaced: '31 September 2019',
-			orderDelivered: '32 September 2019',
-		},
-	],
+	[],
 );
 
 const showAll = handleAction(

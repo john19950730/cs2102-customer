@@ -9,12 +9,26 @@
 	padding: 8px;
 }
 .orders-table {
-	width: 100%;
+	margin-left: 40px;
+	width: calc(100% - 80px);
+	border-collapse: collapse;
 }
 .orders-table thead {
-	font-weight: 500;
+	font-weight: 700;
 	text-align: center;
-	color: #bbb;
+	color: #999;
+}
+.orders-table thead tr td {
+	padding: 4px;
+}
+.order-id {
+	width: 100px;
+}
+.order-time-placed {
+	width: 250px;
+}
+.order-time-delivered {
+	width: 250px;
 }
 .orders-table tbody {
 	text-align: center;
@@ -22,6 +36,15 @@
 }
 .orders-table tbody tr.delivered {
 	color: #192;
+}
+.order-row:nth-child(odd) {
+	background-color: #222;
+}
+.order-row:nth-child(even) {
+	background-color: #444;
+}
+.order-row td {
+	padding: 4px;
 }
 .toggle-show {
 	position: absolute;

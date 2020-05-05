@@ -1,6 +1,7 @@
 import React from 'react';
 import './css/orders.css';
 import { connect } from 'react-redux';
+import { debounce } from 'lodash';
 
 import Layout from '../components/Layout';
 import OrderItem from '../components/OrderItem';
@@ -13,6 +14,7 @@ import {
 	customerOrdersSelector,
 	showAllOrdersSelector,
 	toggleShowAllOrders,
+	fetchCustomerOrders,
 } from '../redux/state/customer.state';
 
 const connectToRedux = connect(
@@ -21,14 +23,20 @@ const connectToRedux = connect(
 		showAll: showAllOrdersSelector(state),
 	}),
 	dispatch => ({
+		loadCustomerOrders: debounce(() => {
+			dispatch(fetchCustomerOrders());
+		}, 10000, { leading: true, trailing: false }),
 		toggleShowAll: () => {
 			dispatch(toggleShowAllOrders());
 		},
 	}),
 );
 
-const Orders = ({ orders, showAll, toggleShowAll }) => (
-	<Layout>
+const Orders = ({ orders, showAll, loadCustomerOrders, toggleShowAll }) => {
+
+	loadCustomerOrders();
+
+	return (<Layout>
 		<div className="orders">
 			<div className="orders-label">
 				CURRENT ORDERS
@@ -36,10 +44,10 @@ const Orders = ({ orders, showAll, toggleShowAll }) => (
 			<table className="orders-table">
 				<thead>
 					<tr>
-						<td>Order ID</td>
-						<td>Address</td>
-						<td>Time Order Placed</td>
-						<td>Time Order Delivered</td>
+						<td className="order-id">Order ID</td>
+						<td className="order-address">Address</td>
+						<td className="order-time-placed">Time Order Placed</td>
+						<td className="order-time-delivered">Time Order Delivered</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -60,8 +68,8 @@ const Orders = ({ orders, showAll, toggleShowAll }) => (
 				<BackToHome />
 			</div>
 		</div>
-	</Layout>
-);
+	</Layout>);
+};
 
 const enhance = connectToRedux;
 
