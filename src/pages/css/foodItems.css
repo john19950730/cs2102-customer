@@ -1,0 +1,14 @@
+.fooditems {
+	font-family: Arial, sans-serif;
+	margin-top: 95px;
+	background-color: #000;
+}
+.fooditems-label {
+	color: #bbb;
+	font-size: 64pt;
+
+}
+.fooditems-label .step-number {
+	background-color: #6f9;
+}
+
