@@ -31,5 +31,3 @@ export const createNewOrder = ({ foodItems, cid, rid, address, promoid, specialR
 	body: JSON.stringify({ foodItems, cid, rid, address, promoid, specialRequest }),
 	headers: { 'Content-Type': 'application/json' },
 }));
-
-export const loginAsDeliveryRider = ({ username, password }) => (fetch(`${endPoint}/rider/login/${username}/${password}`))

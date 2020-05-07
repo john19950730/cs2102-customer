@@ -1,54 +1,22 @@
 import React from 'react';
 import './css/deliveryRider.css';
 import { connect } from 'react-redux';
-import { reduxForm, getFormValues, Field } from 'redux-form';
-import { compose } from 'recompose';
+import { isEmpty } from 'lodash';
 
-const connectToRedux = connect(
-	state => ({
-		formValues: getFormValues('drLogin')(state),
-	}),
-	dispatch => ({
-		drLogin: values => () => {
-			// handle dr login
-			console.log(values);
-		},
-	}),
-);
+import DrLogin from './drLogin';
+import DrMain from './drMain';
 
-const withReduxForm = reduxForm({
-	form: 'drLogin',
-})
+import { loggedInDeliveryRiderSelector } from '../redux/state/dr.state';
 
-const DeliveryRider = ({ formValues, drLogin }) => (
+const connectToRedux = connect(state => ({
+	rider: loggedInDeliveryRiderSelector(state),
+}));
+
+const DeliveryRider = ({ rider }) => (
 	<div className="delivery-rider">
-		<div className="dr-header">
-			Delivery Rider Login
-		</div>
-		<div className="dr-login">
-			<table>
-				<tbody>
-					<tr>
-						<td className="label">Phone Number:</td>
-						<td><Field component="input" name="drUser" type="text" /></td>
-					</tr>
-					<tr>
-						<td className="label">Password:</td>
-						<td><Field component="input" name="drPass" type="password" /></td>
-					</tr>
-				</tbody>
-			</table>
-			<button onClick={drLogin(formValues)}>Login</button>
-		</div>
-		<div className="dr-footer">
-			Deliver Rider Management App by Group 41
-		</div>
+		{isEmpty(rider) && <DrLogin />}
+		{!isEmpty(rider) && <DrMain />}
 	</div>
 );
 
-const enhance = compose(
-	connectToRedux,
-	withReduxForm,
-);
-
-export default enhance(DeliveryRider);
+export default connectToRedux(DeliveryRider);

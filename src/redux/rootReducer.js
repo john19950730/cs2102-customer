@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import customer from './state/customer.state';
 import order from './state/order.state';
 import restaurantFood from './state/restaurantFood.state';
+import dr from './state/dr.state';
 import rs from './state/rs.state';
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
 	customer,
 	order,
 	restaurantFood,
+	dr,
 	rs,
 });
 
