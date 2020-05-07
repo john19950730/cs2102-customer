@@ -11,7 +11,7 @@ const connectToRedux = connect(null, (dispatch, { restaurant }) => ({
 
 const RestaurantItem = ({ restaurant, setAsRestaurant }) => (
 	<li>
-		<button className="restaurant-button" onClick={setAsRestaurant}>{restaurant.name}</button>
+		<button className="restaurant-button" onClick={setAsRestaurant}>{restaurant.rname}</button>
 	</li>
 );
 

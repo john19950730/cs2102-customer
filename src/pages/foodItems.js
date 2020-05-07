@@ -64,11 +64,11 @@ const FoodItems = ({
 		<div className="fooditems-label">
 			<span className="step-number">2</span>FOOD ITEMS
 		</div>
-		<div className="restaurant-rating">
+		{!!restaurant.rating && <div className="restaurant-rating">
 			Our customers gave this restaurant a rating of: <span className="rating-number" style={ratingColorStyle}>{restaurant.rating}</span> /10
-		</div>
+		</div>}
 		<div className="fooditems-intro">
-			Here is what <span className="restaurant-name">{restaurant.name}</span> has to offer:
+			Here is what <span className="restaurant-name">{restaurant.rname}</span> has to offer:
 		</div>
 		<table className="fooditems-table">
 			<thead>

@@ -3,10 +3,10 @@ import './css/register.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { reduxForm, getFormValues, Field } from 'redux-form';
-import { branch, compose, renderComponent } from 'recompose';
+import { compose } from 'recompose';
 
+import withLoginCheck from '../components/hoc/withLoginCheck';
 import Layout from '../components/Layout';
-import RedirectToHome from '../components/RedirectToHome';
 
 import { loggedInCustomerSelector, registerNewUser } from '../redux/state/customer.state';
 
@@ -20,11 +20,6 @@ const connectToRedux = connect(
 			dispatch(registerNewUser(values));
 		},
 	}),
-);
-
-const loginCheck = branch(
-	({ customer }) => (Object.keys(customer).length > 0),
-	renderComponent(RedirectToHome),
 );
 
 const withReduxForm = reduxForm({
@@ -60,6 +55,6 @@ const Register = ({ registerFormValues, registerHandler }) => (
 	</Layout>
 );
 
-const enhance = compose(connectToRedux, loginCheck, withReduxForm);
+const enhance = compose(connectToRedux, withLoginCheck(true), withReduxForm);
 
 export default enhance(Register);

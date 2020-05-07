@@ -2,6 +2,8 @@ import { handleAction } from 'redux-actions';
 import { combineReducers } from 'redux';
 import { find, flow, path } from 'lodash/fp';
 
+import { getRestaurantList } from '../api/apiCalls';
+
 import { orderRestaurantSelector } from './order.state';
 
 export const SET_RESTAURANT_LIST = 'SET_RESTAURANT_LIST';
@@ -12,12 +14,14 @@ export const restaurantFoodItemsSelector = path('restaurantFood.foodItemsList');
 export const foodItemSelectorById = id => flow(path('restaurantFood.foodItemsList'), find(item => item.id === id));
 
 // simulate server activity with test data
-export const fetchRestaurantsList = () => dispatch => (new Promise(resolve => setTimeout(resolve, 1000)).then(() => {
-	dispatch(setRestaurantList([
-		{id:'a1', name:'McDunkin', rating: '4.2'},
-		{id:'a2', name:'Doughnalds', rating: '6.9'},
-	]));
-}));
+export const fetchRestaurantsList = () => dispatch => {
+	getRestaurantList()
+		.then(res => res.json())
+		.then(({ restaurants }) => {
+			dispatch(setRestaurantList(restaurants));
+		})
+		.catch(() => alert('Error occurred when fetching restaurants list!'))
+};
 
 // simulate server activity with test data
 export const fetchRestaurantFoodItemsList = () => (dispatch, getState) => {

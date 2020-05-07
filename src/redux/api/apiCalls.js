@@ -16,7 +16,15 @@ export const registerCustomer = ({
 	headers: { 'Content-Type': 'application/json' },
 }));
 
-export const fetchRestaurantList = () => (fetch(`${endPoint}/restaurant/list`));
+export const updateCustomer = ({
+	username,
+	password,
+	registeredcreditcard
+}) => {
+
+};
+
+export const getRestaurantList = () => (fetch(`${endPoint}/restaurant/list`));
 
 export const createNewOrder = ({ cid, address, promoId }) => (fetch(`${endPoint}/customer/createOrder`, {
 	method: 'PUT',

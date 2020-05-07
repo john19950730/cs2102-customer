@@ -35,7 +35,7 @@ const Restaurants = ({ hidden, restaurants, loadRestaurantsList, abortOrder }) =
 			Here is our selection of food outlets:
 		</div>
 		<ul className="restaurants-list">
-			{restaurants.map(e => (<RestaurantItem key={e.id} restaurant={e}/>))}
+			{restaurants.map(e => (<RestaurantItem key={e.rid} restaurant={e}/>))}
 		</ul>
 		<div className="bottom-bar">
 			<BackToHome onClick={abortOrder} />

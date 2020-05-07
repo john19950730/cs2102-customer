@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { reduxForm, getFormValues, Field } from 'redux-form';
 import { branch, withProps, compose, renderComponent } from 'recompose';
 
+import withLoginCheck from '../components/hoc/withLoginCheck';
 import Layout from '../components/Layout';
 import RedirectToHome from '../components/RedirectToHome';
 import BackToHome from '../components/BackToHome';
@@ -17,24 +18,18 @@ const connectToRedux = connect(
 		profileFormValues: getFormValues('profile')(state),
 	}),
 	dispatch => ({
-		saveProfile: (values) => {
-			// some save profile handler
+		saveProfile: (values) => () => {
+			console.log(values);
 		},
 	}),
 );
 
-const loginCheck = branch(
-	({ customer }) => (Object.keys(customer).length === 0),
-	renderComponent(RedirectToHome),
-);
-
 const withInitialValues = withProps(({ customer }) => {
-	const { name, cc, phone } = customer;
+	const { username, password, registeredcreditcard } = customer;
 	return ({ initialValues:
 		{
-			name,
-			cc,
-			phone,
+			username,
+			registeredcreditcard,
 		},
 	});
 });
@@ -60,7 +55,7 @@ const Profile = ({ customer, saveProfile, profileFormValues }) => (
 					</tr>
 					<tr>
 						<td className="label">Password</td>
-						<td className="input"><Field component="input" name="password" /></td>
+						<td className="input"><Field component="input" type="password" name="password" /></td>
 					</tr>
 					<tr>
 						<td className="label">Credit Card No.</td>
@@ -80,7 +75,7 @@ const Profile = ({ customer, saveProfile, profileFormValues }) => (
 
 const enhance = compose(
 	connectToRedux,
-	loginCheck,
+	withLoginCheck(false),
 	withInitialValues,
 	withReduxForm,
 );

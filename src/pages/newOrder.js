@@ -3,14 +3,17 @@ import './css/newOrder.css';
 import { connect } from 'react-redux';
 import { withProps, compose } from 'recompose';
 
+import withLoginCheck from '../components/hoc/withLoginCheck';
 import Layout from '../components/Layout';
 import Restaurants from './restaurants';
 import FoodItems from './foodItems';
 import ConfirmOrder from './confirmOrder';
 
+import { loggedInCustomerSelector } from '../redux/state/customer.state';
 import { orderRestaurantSelector, orderFoodItemsSelector } from '../redux/state/order.state';
 
 const connectToRedux = connect(state => ({
+	customer: loggedInCustomerSelector(state),
 	restaurant: orderRestaurantSelector(state),
 	foodItems: orderFoodItemsSelector(state),
 }));
@@ -28,6 +31,7 @@ const NewOrder = ({ hasSelectedRestaurant, hasSelectedFoodItems }) => (
 	</Layout>
 );
 
-const enhance = compose(connectToRedux, withStepsDone);
+const enhance = compose(connectToRedux, //withLoginCheck(false), 
+	withStepsDone);
 
 export default enhance(NewOrder);
