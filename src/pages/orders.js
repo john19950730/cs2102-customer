@@ -1,8 +1,10 @@
 import React from 'react';
 import './css/orders.css';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { debounce } from 'lodash';
 
+import withLoginCheck from '../components/hoc/withLoginCheck';
 import Layout from '../components/Layout';
 import OrderItem from '../components/OrderItem';
 import BackToHome from '../components/BackToHome';
@@ -11,6 +13,7 @@ import ShowAllOrders from '../components/svg/ShowAllOrders';
 import HideCompletedOrders from '../components/svg/HideCompletedOrders';
 
 import {
+	loggedInCustomerSelector,
 	customerOrdersSelector,
 	showAllOrdersSelector,
 	toggleShowAllOrders,
@@ -19,6 +22,7 @@ import {
 
 const connectToRedux = connect(
 	state => ({
+		customer: loggedInCustomerSelector(state),
 		orders: customerOrdersSelector(state),
 		showAll: showAllOrdersSelector(state),
 	}),
@@ -51,7 +55,7 @@ const Orders = ({ orders, showAll, loadCustomerOrders, toggleShowAll }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{orders.map(order => (<OrderItem key={order.id} order={order} showAll={showAll} />))}
+					{orders.map(order => (<OrderItem key={order.oid} order={order} showAll={showAll} />))}
 				</tbody>
 			</table>
 			<div className="toggle-show">
@@ -71,6 +75,9 @@ const Orders = ({ orders, showAll, loadCustomerOrders, toggleShowAll }) => {
 	</Layout>);
 };
 
-const enhance = connectToRedux;
+const enhance = compose(
+	connectToRedux,
+	withLoginCheck(false),
+);
 
 export default enhance(Orders);

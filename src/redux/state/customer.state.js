@@ -2,7 +2,7 @@ import { handleAction } from 'redux-actions';
 import { combineReducers } from 'redux';
 import { path, omitBy, isEmpty } from 'lodash/fp';
 
-import { login, registerCustomer, updateCustomer } from '../api/apiCalls';
+import { login, registerCustomer, updateCustomer, getCustomerOrders } from '../api/apiCalls';
 
 export const SET_CUSTOMER = 'SET_CUSTOMER';
 export const SET_CUSTOMER_ORDERS = 'SET_CUSTOMER_ORDERS';
@@ -57,23 +57,13 @@ export const updateUserProfile = (newUserValues) => (dispatch, getState) => {
 
 export const fetchCustomerOrders = () => (dispatch, getState) => {
 	const state = getState();
-	// simulate server activity with test data
-	return new Promise(resolve => setTimeout(resolve, 1000)).then(() => {
-		dispatch(setCustomerOrders([
-			{
-				id: 'b51',
-				address: 'Area 51',
-				orderPlaced: '30 February 2020',
-				orderDelivered: null,
-			},
-			{
-				id: 'a123',
-				address: '123 Sesame Street',
-				orderPlaced: '31 September 2019',
-				orderDelivered: '32 September 2019',
-			},
-		]));
-	});
+	const { cid } = loggedInCustomerSelector(state);
+	getCustomerOrders({ cid })
+		.then(res => res.json())
+		.then(({ orders }) => {
+			dispatch(setCustomerOrders(orders))
+		})
+		.catch(() => alert('Error has occurred while fetch your past orders!'));
 };
 
 export const setLoggedInCustomer = customer => ({ type: SET_CUSTOMER, payload: customer });

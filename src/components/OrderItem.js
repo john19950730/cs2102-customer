@@ -8,10 +8,10 @@ const conditionalRender = branch(
 
 const OrderItem = ({ order }) => (
 	<tr className={`order-row ${order.orderDelivered && 'delivered'}`}>
-		<td>{order.id}</td>
+		<td>{order.oid}</td>
 		<td>{order.address}</td>
-		<td>{order.orderPlaced}</td>
-		<td>{order.orderDelivered}</td>
+		<td>{order.timeorderplaced}</td>
+		<td>{order.timeriderdeliversorder}</td>
 	</tr>
 );
 

@@ -26,6 +26,8 @@ export const getRestaurantList = () => (fetch(`${endPoint}/restaurant/list`));
 
 export const getRestaurantMenu = ({ rid }) => (fetch(`${endPoint}/restaurant/getMenu/${rid}`));
 
+export const getCustomerOrders = ({ cid }) => (fetch(`${endPoint}/customer/getOrderHistory/${cid}`));
+
 export const createNewOrder = ({ foodItems, cid, rid, address, promoid, specialRequest }) => (fetch(`${endPoint}/customer/createOrder`, {
 	method: 'PUT',
 	body: JSON.stringify({ foodItems, cid, rid, address, promoid, specialRequest }),
