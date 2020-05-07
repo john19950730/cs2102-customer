@@ -9,7 +9,7 @@ const connectToRedux = connect(state => ({
 
 const FoodItem = ({ foodItem, input }) => (
 	<tr className="fooditem-row">
-		<td className="fooditem-name">{foodItem.name}</td>
+		<td className="fooditem-name">{foodItem.foodname}</td>
 		<td className="fooditem-price">{parseFloat(foodItem.price).toFixed(2)}</td>
 		<td className="fooditem-quant">
 			<input

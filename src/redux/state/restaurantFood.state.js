@@ -1,8 +1,8 @@
 import { handleAction } from 'redux-actions';
 import { combineReducers } from 'redux';
-import { find, flow, path } from 'lodash/fp';
+import { find, filter, flow, path } from 'lodash/fp';
 
-import { getRestaurantList } from '../api/apiCalls';
+import { getRestaurantList, getRestaurantMenu } from '../api/apiCalls';
 
 import { orderRestaurantSelector } from './order.state';
 
@@ -11,9 +11,8 @@ export const SET_FOODITEMS_LIST = 'SET_FOODITEMS_LIST';
 
 export const allRestaurantsSelector = path('restaurantFood.restaurantList');
 export const restaurantFoodItemsSelector = path('restaurantFood.foodItemsList');
-export const foodItemSelectorById = id => flow(path('restaurantFood.foodItemsList'), find(item => item.id === id));
+export const foodItemSelectorById = id => flow(path('restaurantFood.foodItemsList'), find(item => item.fooditemid === id));
 
-// simulate server activity with test data
 export const fetchRestaurantsList = () => dispatch => {
 	getRestaurantList()
 		.then(res => res.json())
@@ -23,19 +22,21 @@ export const fetchRestaurantsList = () => dispatch => {
 		.catch(() => alert('Error occurred when fetching restaurants list!'))
 };
 
-// simulate server activity with test data
+const transformFoodItemsList = filter(['itemavailability', 'T']);
+
 export const fetchRestaurantFoodItemsList = () => (dispatch, getState) => {
 	const state = getState();
-	if (Object.keys(orderRestaurantSelector(state)).length === 0) {
-		return [];
+	const { rid } = orderRestaurantSelector(state);
+	if (!rid) {
+		return dispatch(setFoodItemsList([]));
 	}
-	return new Promise(resolve => setTimeout(resolve, 1000)).then(() => {
-		dispatch(setFoodItemsList([
-			{id:'f1', name:'Doughnut', price:'10'},
-			{id:'f2', name:'Can of Cola', price:'2.5'},
-			{id:'f3', name:'Big Banana Fresh', price:'1.2'},
-		]));
-	});
+	return getRestaurantMenu({ rid })
+		.then(res => res.json())
+		.then(({ foodItems }) => transformFoodItemsList(foodItems))
+		.then(filteredFoodItems => {
+			dispatch(setFoodItemsList(filteredFoodItems));
+		})
+		.catch(() => alert('Error occurred when fetching restaurant menu!'));
 };
 
 export const setRestaurantList = restaurants => ({ type: SET_RESTAURANT_LIST, payload: restaurants });

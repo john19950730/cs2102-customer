@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, getFormValues, Field } from 'redux-form';
-import { compose, withProps } from 'recompose';
+import { compose } from 'recompose';
 
 import MenuItem from '../components/MenuItem';
 

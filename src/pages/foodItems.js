@@ -47,6 +47,8 @@ const withRatingColor = withProps(({ restaurant }) => ({
 	},
 }));
 
+const transformFoodItemId = fooditemid => ('f' + fooditemid);
+
 const FoodItems = ({
 	hidden,
 	restaurant,
@@ -80,8 +82,8 @@ const FoodItems = ({
 			</thead>
 			<tbody>
 				{foodItemsList.map(item => (<Field
-					key={item.id}
-					name={item.id}
+					key={item.fooditemid}
+					name={transformFoodItemId(item.fooditemid)}
 					component={FoodItem}
 					props={{ foodItem: item }}
 				/>))}
@@ -98,7 +100,6 @@ const enhance = compose(
 	connectToRedux,
 	withReduxForm,
 	withRatingColor,
-	withProps(console.log),
 );
 
 export default enhance(FoodItems);

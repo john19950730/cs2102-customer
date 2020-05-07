@@ -10,6 +10,8 @@ import OrderFoodItem from '../components/OrderFoodItem';
 import { restaurantFoodItemsSelector } from '../redux/state/restaurantFood.state';
 import { orderFoodItemsSelector, resetFoodOrder, postFoodOrder } from '../redux/state/order.state';
 
+const transformFormValues = k => parseInt(k.substr(1));
+
 const connectToRedux = connect(
 	state => ({
 		order: orderFoodItemsSelector(state),
@@ -26,7 +28,7 @@ const connectToRedux = connect(
 );
 
 const withTotalPrice = withProps(({ order, foodItemsList }) => ({
-	totalPrice: sum(map(order, (v, k) => parseFloat(v) * parseFloat(find(foodItemsList, item => item.id === k).price))).toFixed(2),
+	totalPrice: sum(map(order, (v, k) => parseFloat(v) * parseFloat(find(foodItemsList, item => item.fooditemid === transformFormValues(k)).price))).toFixed(2),
 }));
 
 const ConfirmOrder = ({ hidden, order, totalPrice, amendOrder, confirmOrder }) => (
@@ -46,7 +48,7 @@ const ConfirmOrder = ({ hidden, order, totalPrice, amendOrder, confirmOrder }) =
 				</tr>
 			</thead>
 			<tbody>
-				{map(order, (v, k) => (<OrderFoodItem key={k} id={k} quantity={v} />))}
+				{map(order, (v, k) => (<OrderFoodItem key={k} id={transformFormValues(k)} quantity={v} />))}
 			</tbody>
 			<tfoot>
 				<tr>
@@ -65,6 +67,6 @@ const ConfirmOrder = ({ hidden, order, totalPrice, amendOrder, confirmOrder }) =
 	</div>
 );
 
-const enhance = compose(connectToRedux, withTotalPrice);
+const enhance = compose(connectToRedux, withProps(console.log), withTotalPrice);
 
 export default enhance(ConfirmOrder);
