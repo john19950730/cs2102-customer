@@ -3,6 +3,15 @@
 	background-color: #000;
 	margin-top: 95px;
 }
+.profile-reward {
+	padding: 12px;
+	font-size: 24pt;
+	color: #999;
+}
+.profile-rp {
+	color: #e96;
+	font-weight: 700;
+}
 .profile-label {
 	padding: 12px;
 	font-size: 24pt;

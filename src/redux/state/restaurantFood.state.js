@@ -14,8 +14,8 @@ export const foodItemSelectorById = id => flow(path('restaurantFood.foodItemsLis
 // simulate server activity with test data
 export const fetchRestaurantsList = () => dispatch => (new Promise(resolve => setTimeout(resolve, 1000)).then(() => {
 	dispatch(setRestaurantList([
-		{id:'a1', name:'McDunkin'},
-		{id:'a2', name:'Doughnalds'},
+		{id:'a1', name:'McDunkin', rating: '4.2'},
+		{id:'a2', name:'Doughnalds', rating: '6.9'},
 	]));
 }));
 
@@ -27,9 +27,9 @@ export const fetchRestaurantFoodItemsList = () => (dispatch, getState) => {
 	}
 	return new Promise(resolve => setTimeout(resolve, 1000)).then(() => {
 		dispatch(setFoodItemsList([
-			{id:'f1', name:'Dognuts', price:'19'},
-			{id:'f2', name:'Cocala', price:'9.5'},
-			{id:'f3', name:'Bananana', price:'12'},
+			{id:'f1', name:'Doughnut', price:'10'},
+			{id:'f2', name:'Can of Cola', price:'2.5'},
+			{id:'f3', name:'Big Banana Fresh', price:'1.2'},
 		]));
 	});
 };

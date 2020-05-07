@@ -10,6 +10,15 @@
 	color: #bbb;
 	font-size: 64pt;
 }
+.restaurant-rating {
+	color: #999;
+	font-size: 16pt;
+	padding: 20px;
+}
+.rating-number {
+	font-size: 32pt;
+	font-weight: 700;
+}
 .fooditems-intro {
 	color: #999;
 	font-size: 20pt;

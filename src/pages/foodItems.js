@@ -2,7 +2,7 @@ import React from 'react';
 import './css/foodItems.css';
 import { connect } from 'react-redux';
 import { reduxForm, getFormValues, Field } from 'redux-form';
-import { compose } from 'recompose';
+import { compose, withProps } from 'recompose';
 import { debounce } from 'lodash';
 import { map, sum, pickBy } from 'lodash/fp';
 
@@ -41,9 +41,16 @@ const withReduxForm = reduxForm({
 	form: 'foodItems',
 });
 
+const withRatingColor = withProps(({ restaurant }) => ({
+	ratingColorStyle: {
+		color: `#${Math.round((10 - parseInt(restaurant.rating)) * 1.5).toString(16)}${Math.round(parseInt(restaurant.rating) * 1.5).toString(16)}2`,
+	},
+}));
+
 const FoodItems = ({
 	hidden,
 	restaurant,
+	ratingColorStyle,
 	foodItemsList,
 	orderFormValues,
 	loadRestaurantFoodItems,
@@ -56,6 +63,9 @@ const FoodItems = ({
 	return (<div className={`fooditems ${hidden && 'hidden'}`}>
 		<div className="fooditems-label">
 			<span className="step-number">2</span>FOOD ITEMS
+		</div>
+		<div className="restaurant-rating">
+			Our customers gave this restaurant a rating of: <span className="rating-number" style={ratingColorStyle}>{restaurant.rating}</span> /10
 		</div>
 		<div className="fooditems-intro">
 			Here is what <span className="restaurant-name">{restaurant.name}</span> has to offer:
@@ -87,6 +97,8 @@ const FoodItems = ({
 const enhance = compose(
 	connectToRedux,
 	withReduxForm,
+	withRatingColor,
+	withProps(console.log),
 );
 
 export default enhance(FoodItems);

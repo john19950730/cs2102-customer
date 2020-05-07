@@ -43,9 +43,12 @@ const withReduxForm = reduxForm({
 	form: 'profile',
 });
 
-const Profile = ({ saveProfile, profileFormValues }) => (
+const Profile = ({ customer, saveProfile, profileFormValues }) => (
 	<Layout>
 		<div className="profile">
+			<div className="profile-reward">
+				You have <span className="profile-rp">{customer.rewardPoints}</span> reward points.
+			</div>
 			<div className="profile-label">
 				You can edit your personal information here:
 			</div>

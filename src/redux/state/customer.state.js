@@ -66,6 +66,7 @@ const customer = handleAction(
 		name: 'ASDFGHJKL',
 		cc: '5555555555555555',
 		phone: '66666666',
+		rewardPoints: '123',
 		joinDate: '29 February 2019',
 	},
 );
