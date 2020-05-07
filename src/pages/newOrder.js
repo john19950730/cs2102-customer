@@ -31,7 +31,6 @@ const NewOrder = ({ hasSelectedRestaurant, hasSelectedFoodItems }) => (
 	</Layout>
 );
 
-const enhance = compose(connectToRedux, //withLoginCheck(false), 
-	withStepsDone);
+const enhance = compose(connectToRedux, withLoginCheck(false), withStepsDone);
 
 export default enhance(NewOrder);

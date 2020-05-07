@@ -1,0 +1,29 @@
+.delivery-rider {
+	padding: 50px;
+}
+.dr-header {
+	text-align: center;
+	margin-bottom: 20px;
+}
+.dr-login {
+	text-align: center;
+}
+.dr-login table {
+	width: 100%;
+}
+.dr-login table tbody tr td {
+	width: 50%;
+}
+.dr-login table tbody tr td:nth-child(2) {
+	text-align: left;
+}
+.dr-login button {
+	margin: 20px;
+	padding: 10px;
+	font-size: 20pt;
+}
+.dr-footer {
+	margin-top: 80px;
+	font-size: 8pt;
+	text-align: right;
+}
