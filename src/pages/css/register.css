@@ -18,14 +18,13 @@
 .register table tr td {
 	padding: 4px;
 }
-td.label {
+.register td.label {
+	font-size: 16pt;
+	color: #bbb;
 	text-align: right;
 }
-td.label label {
-	color: #bbb;
-}
-td.input input {
-	font-size: 16px;
+.register td.input input {
+	font-size: 16pt;
 	width: 100%;
 	padding: 4px;
 	background-color: #000;
@@ -36,9 +35,8 @@ td.input input {
 	border-color: #fff;
 }
 .register-button{
-	font-size: 24px;
-	width: 180px;
-	height: 60px;
+	font-size: 24pt;
+	padding: 24px;
 	background-color: #000;
 	color: #ccc;
 	outline: none;

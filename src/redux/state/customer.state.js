@@ -2,7 +2,7 @@ import { handleAction } from 'redux-actions';
 import { combineReducers } from 'redux';
 import { path } from 'lodash/fp';
 
-import { login } from '../api/apiCalls';
+import { login, registerCustomer } from '../api/apiCalls';
 
 export const SET_CUSTOMER = 'SET_CUSTOMER';
 export const SET_CUSTOMER_ORDERS = 'SET_CUSTOMER_ORDERS';
@@ -13,21 +13,28 @@ export const loggedInCustomerSelector = path('customer.customer');
 export const customerOrdersSelector = path('customer.orders');
 export const showAllOrdersSelector = path('customer.showAll');
 
-export const loginWithUsername = ({ username }) => (dispatch) => {
-	login({ username })
+export const loginWithUsername = (userPass) => (dispatch) => {
+	login(userPass)
 		.then(res => res.json())
-		.then(({ isLoginSuccess, customer }) => {
+		.then(({ isLoginSuccess, user }) => {
 			if (!isLoginSuccess) {
 				alert('Login has failed!');
 			} else {
-				dispatch(setLoggedInCustomer(customer));
+				dispatch(setLoggedInCustomer(user));
 			}
 		})
 		.catch(() => alert('Error has occurred during login!'));
 };
 
-export const registerNewUser = ({ username, name, creditCard }) => (dispatch) => {
-
+export const registerNewUser = (newUserValues) => (dispatch) => {
+	registerCustomer(newUserValues)
+		.then(res => res.json())
+		.then(({ error, msg }) => {
+			if (error) {
+				alert(msg);
+			}
+		})
+		.catch(() => alert('Error has occurred during registration!'));
 };
 
 export const fetchCustomerOrders = () => (dispatch, getState) => {
@@ -59,16 +66,7 @@ export const logoutCustomer = () => ({ type: RESET_CUSTOMER });
 const customer = handleAction(
 	SET_CUSTOMER,
 	(state, { payload }) => payload,
-	//{},
-	// test data:
-	{
-		cid: 'aaaaaa',
-		name: 'ASDFGHJKL',
-		cc: '5555555555555555',
-		phone: '66666666',
-		rewardPoints: '123',
-		joinDate: '29 February 2019',
-	},
+	{},
 );
 
 const orders = handleAction(

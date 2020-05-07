@@ -47,7 +47,7 @@ const Profile = ({ customer, saveProfile, profileFormValues }) => (
 	<Layout>
 		<div className="profile">
 			<div className="profile-reward">
-				You have <span className="profile-rp">{customer.rewardPoints}</span> reward points.
+				You have <span className="profile-rp">{customer.rewardpoints}</span> reward points.
 			</div>
 			<div className="profile-label">
 				You can edit your personal information here:
@@ -55,22 +55,16 @@ const Profile = ({ customer, saveProfile, profileFormValues }) => (
 			<table className="profile-edit-form">
 				<tbody>
 					<tr>
-						<td class="label">Phone Number</td>
-						<td class="input">
-							<Field component="input" name="phone" />
-						</td>
+						<td className="label">Username</td>
+						<td className="input"><Field component="input" name="username" /></td>
 					</tr>
 					<tr>
-						<td class="label">Full Name</td>
-						<td class="input">
-							<Field component="input" name="name" />
-						</td>
+						<td className="label">Password</td>
+						<td className="input"><Field component="input" name="password" /></td>
 					</tr>
 					<tr>
-						<td class="label">Credit Card No.</td>
-						<td class="input">
-							<Field component="input" name="cc" />
-						</td>
+						<td className="label">Credit Card No.</td>
+						<td className="input"><Field component="input" name="registeredcreditcard" /></td>
 					</tr>
 				</tbody>
 			</table>

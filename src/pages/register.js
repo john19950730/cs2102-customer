@@ -2,23 +2,36 @@ import React from 'react';
 import './css/register.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { reduxForm, getFormValues, Field } from 'redux-form';
 import { branch, compose, renderComponent } from 'recompose';
 
 import Layout from '../components/Layout';
 import RedirectToHome from '../components/RedirectToHome';
 
-import { loggedInCustomerSelector } from '../redux/state/customer.state';
+import { loggedInCustomerSelector, registerNewUser } from '../redux/state/customer.state';
 
-const connectToRedux = connect(state => ({
-	customer: loggedInCustomerSelector(state),
-}));
+const connectToRedux = connect(
+	state => ({
+		customer: loggedInCustomerSelector(state),
+		registerFormValues: getFormValues('register')(state),
+	}),
+	dispatch => ({
+		registerHandler: values => () => {
+			dispatch(registerNewUser(values));
+		},
+	}),
+);
 
 const loginCheck = branch(
 	({ customer }) => (Object.keys(customer).length > 0),
 	renderComponent(RedirectToHome),
 );
 
-const Register = () => (
+const withReduxForm = reduxForm({
+	form: 'register',
+});
+
+const Register = ({ registerFormValues, registerHandler }) => (
 	<Layout>
 		<div className="register">
 			<div className="register-label">
@@ -27,26 +40,26 @@ const Register = () => (
 			<table>
 				<tbody>
 					<tr className="phone">
-						<td className="label"><label className="phone-label">Phone Number</label></td>
-						<td className="input"><input className="phone-input" type="text" name="phone" /></td>
+						<td className="label">Username</td>
+						<td className="input"><Field component="input" type="text" name="username" /></td>
 					</tr>
 					<tr className="name">
-						<td className="label"><label className="name-label">Full Name</label></td>
-						<td className="input"><input className="name-input" type="text" name="name" /></td>
+						<td className="label">Password</td>
+						<td className="input"><Field component="input" type="password" name="password" /></td>
 					</tr>
 					<tr className="card">
-						<td className="label"><label className="card-label">Credit Card No.</label></td>
-						<td className="input"><input className="card-input" type="text" name="name" /></td>
+						<td className="label">Credit Card No.</td>
+						<td className="input"><Field component="input" type="text" name="registeredCreditCard" /></td>
 					</tr>
 				</tbody>
 			</table>
 			<Link to="/">
-				<button className="register-button">REGISTER</button>
+				<button className="register-button" onClick={registerHandler(registerFormValues)}>REGISTER</button>
 			</Link>
 		</div>
 	</Layout>
 );
 
-const enhance = compose(connectToRedux, loginCheck);
+const enhance = compose(connectToRedux, loginCheck, withReduxForm);
 
 export default enhance(Register);

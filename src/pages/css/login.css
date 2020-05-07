@@ -16,16 +16,27 @@
 	padding: 10px;
 	height: 100%;
 }
+.user table {
+	margin: 0 auto;
+	width: 80%;
+}
 .user-label {
 	font-size: 24pt;
 	margin-right: 12px;
 	color: #bbb;
+	text-align: right;
 }
-.user form input {
+.password-label {
+	font-size: 24pt;
+	margin-right: 12px;
+	color: #bbb;
+	text-align: right;
+}
+.user table input {
 	font-size: 48pt;
 	padding: 10px;
 	height: 55px;
-	width: calc(80vw - 40px);
+	width: 80%;
 	background-color: #000;
 	color: #fff;
 	outline: none;

@@ -23,7 +23,7 @@ const CustomerHeader = ({ customer, logout }) => (
 		<div className="customer-label">
 			Welcome back to 041FDS,
 			<Link to="/profile">
-				<div className="customer-name">{customer.name}</div>
+				<div className="customer-name">{customer.username}</div>
 			</Link>
 		</div>
 		<div className="logout">
