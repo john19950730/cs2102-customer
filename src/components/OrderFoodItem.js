@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { foodItemSelectorById } from '../redux/state/restaurantFood.state';
 
 const connectToRedux = connect((state, { id }) => ({
-	foodItem: foodItemSelectorById(id)(state),
+	foodItem: foodItemSelectorById(parseInt(id))(state),
 }));
 
 const OrderFoodItem = ({ foodItem, quantity }) => (

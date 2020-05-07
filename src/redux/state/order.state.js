@@ -2,6 +2,10 @@ import { handleAction } from 'redux-actions';
 import { combineReducers } from 'redux';
 import { path } from 'lodash/fp';
 
+import { createNewOrder } from '../api/apiCalls';
+
+import { loggedInCustomerSelector } from './customer.state';
+
 export const SET_RESTAURANT = 'SET_RESTAURANT';
 export const SET_FOOD_ORDER = 'SET_FOOD_ORDER';
 export const SET_ORDER_COMPLETE = 'SET_ORDER_COMPLETE';
@@ -9,13 +13,23 @@ export const RESET_NEW_ORDER = 'RESET_NEW_ORDER';
 
 export const orderRestaurantSelector = path('order.restaurant');
 export const orderFoodItemsSelector = path('order.foodItems');
-export const isOrderCompleteSelector = path('order.orderComplete');
+export const orderCompleteSelector = path('order.orderComplete');
 
-export const postFoodOrder = order => dispatch => {
-	// simulate server activity
-	return new Promise(resolve => setTimeout(resolve, 1000)).then(() => {
-		dispatch(setOrderComplete(true));
-	});
+export const postFoodOrder = (foodItems, addressSpecial) => (dispatch, getState) => {
+	const state = getState();
+	const { cid } = loggedInCustomerSelector(state);
+	const { rid } = orderRestaurantSelector(state);
+	const requestParams = { foodItems, ...addressSpecial, cid, rid };
+	createNewOrder(requestParams)
+		.then(res => res.json())
+		.then(({ error, msg }) => {
+			if (error) {
+				dispatch(setOrderComplete({ error: true, msg }));
+			} else {
+				dispatch(setOrderComplete({ complete: true }));
+			}
+		})
+		.catch(() => alert('Error occurred when submitting your order!'));
 };
 
 export const setRestaurant = restaurant => ({ type: SET_RESTAURANT, payload: restaurant });
@@ -39,7 +53,7 @@ const foodItems = handleAction(
 const orderComplete = handleAction(
 	SET_ORDER_COMPLETE,
 	(state, { payload }) => payload,
-	false,
+	{},
 );
 
 const orderReducer = (state, action) => {

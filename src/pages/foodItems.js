@@ -5,6 +5,7 @@ import { reduxForm, getFormValues, Field } from 'redux-form';
 import { compose, withProps } from 'recompose';
 import { debounce } from 'lodash';
 import { map, sum, pickBy } from 'lodash/fp';
+import { mapKeys } from 'lodash';
 
 import FoodItem from '../components/FoodItem';
 
@@ -17,6 +18,9 @@ import {
 	setFoodOrder,
 	resetNewOrder,
 } from '../redux/state/order.state';
+
+const transformFoodItemId = fooditemid => ('f' + fooditemid);
+const transformFormValues = k => k.substr(1);
 
 const connectToRedux = connect(
 	state => ({
@@ -32,7 +36,7 @@ const connectToRedux = connect(
 			dispatch(resetNewOrder());
 		},
 		confirmOrder: order => () => {
-			dispatch(setFoodOrder(pickBy(parseInt)(order)));
+			dispatch(setFoodOrder(mapKeys(pickBy(parseInt)(order), (v, k) => transformFormValues(k))));
 		},
 	}),
 );
@@ -46,8 +50,6 @@ const withRatingColor = withProps(({ restaurant }) => ({
 		color: `#${Math.round((10 - parseInt(restaurant.rating)) * 1.5).toString(16)}${Math.round(parseInt(restaurant.rating) * 1.5).toString(16)}2`,
 	},
 }));
-
-const transformFoodItemId = fooditemid => ('f' + fooditemid);
 
 const FoodItems = ({
 	hidden,
@@ -89,6 +91,9 @@ const FoodItems = ({
 				/>))}
 			</tbody>
 		</table>
+		<div className="fooditems-minorder">
+			This restaurant imposes a minimum order limit of: <span className="minorder-number">${restaurant.minorderprice}</span>.
+		</div>
 		<div className="bottom-bar">
 			<button className="back-restaurants" onClick={resetOrder}>Back to Restaurants</button>
 			<button className={`order-button ${(!orderFormValues || sum(map(parseInt)(orderFormValues)) === 0) && 'hidden'}`} onClick={confirmOrder(orderFormValues)}>Place Order</button>

@@ -66,6 +66,13 @@
 .fooditem-quant-input {
 	text-align: right;
 }
+.fooditems-minorder {
+	color: #fff;
+}
+.minorder-number {
+	font-size: 24pt;
+	color: #e93;
+}
 .back-restaurants {
 	font-size: 24pt;
 	margin: 12px;

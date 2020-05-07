@@ -57,6 +57,16 @@
 	color: #f96;
 	padding: 10px;
 }
+.confirm-address, .confirm-special {
+	padding: 20px 60px;
+	font-size: 16pt;
+	color: #999;
+}
+.confirm-address input, .confirm-special input {
+	margin-top: 10px;
+	width: 100%;
+	font-size: 16pt;
+}
 .amend-order {
 	font-size: 24pt;
 	margin: 12px;
