@@ -1,8 +1,8 @@
 import { handleAction } from 'redux-actions';
 import { combineReducers } from 'redux';
-import { path } from 'lodash/fp';
+import { path, omitBy, isEmpty } from 'lodash/fp';
 
-import { login, registerCustomer } from '../api/apiCalls';
+import { login, registerCustomer, updateCustomer } from '../api/apiCalls';
 
 export const SET_CUSTOMER = 'SET_CUSTOMER';
 export const SET_CUSTOMER_ORDERS = 'SET_CUSTOMER_ORDERS';
@@ -32,9 +32,27 @@ export const registerNewUser = (newUserValues) => (dispatch) => {
 		.then(({ error, msg }) => {
 			if (error) {
 				alert(msg);
+			} else {
+				alert('Account registration successful, you may login with your username and password now.');
 			}
 		})
 		.catch(() => alert('Error has occurred during registration!'));
+};
+
+export const updateUserProfile = (newUserValues) => (dispatch, getState) => {
+	const state = getState();
+	const customer = loggedInCustomerSelector(state);
+	const filteredValues = omitBy(isEmpty)(newUserValues);
+	updateCustomer(customer.cid, filteredValues)
+		.then(res => res.json())
+		.then(({ error, msg }) => {
+			if (error) {
+				alert(msg);
+			} else {
+				dispatch(setLoggedInCustomer({ ...customer, ...filteredValues }));
+			}
+		})
+		.catch(() => alert('Error has occurred during update!'));
 };
 
 export const fetchCustomerOrders = () => (dispatch, getState) => {

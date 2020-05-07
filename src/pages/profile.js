@@ -3,14 +3,13 @@ import './css/profile.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { reduxForm, getFormValues, Field } from 'redux-form';
-import { branch, withProps, compose, renderComponent } from 'recompose';
+import { withProps, compose } from 'recompose';
 
 import withLoginCheck from '../components/hoc/withLoginCheck';
 import Layout from '../components/Layout';
-import RedirectToHome from '../components/RedirectToHome';
 import BackToHome from '../components/BackToHome';
 
-import { loggedInCustomerSelector } from '../redux/state/customer.state';
+import { loggedInCustomerSelector, updateUserProfile } from '../redux/state/customer.state';
 
 const connectToRedux = connect(
 	state => ({
@@ -19,13 +18,13 @@ const connectToRedux = connect(
 	}),
 	dispatch => ({
 		saveProfile: (values) => () => {
-			console.log(values);
+			dispatch(updateUserProfile(values));
 		},
 	}),
 );
 
 const withInitialValues = withProps(({ customer }) => {
-	const { username, password, registeredcreditcard } = customer;
+	const { username, registeredcreditcard } = customer;
 	return ({ initialValues:
 		{
 			username,

@@ -9,20 +9,18 @@ export const fetchCustomer = ({ cid }) => (fetch(`${endPoint}/customer/getCustom
 export const registerCustomer = ({
 	username,
 	password,
-	registeredCreditCard
+	registeredCreditCard,
 }) => (fetch(`${endPoint}/customer/addNewCustomer`, {
 	method: 'POST',
 	body: JSON.stringify({ username, password, registeredCreditCard }),
 	headers: { 'Content-Type': 'application/json' },
 }));
 
-export const updateCustomer = ({
-	username,
-	password,
-	registeredcreditcard
-}) => {
-
-};
+export const updateCustomer = (cid, newInformation) => (fetch(`${endPoint}/customer/updateCustomer/${cid}`, {
+	method: 'POST',
+	body: JSON.stringify(newInformation),
+	headers: { 'Content-Type': 'application/json' },
+}));
 
 export const getRestaurantList = () => (fetch(`${endPoint}/restaurant/list`));
 
