@@ -5,12 +5,14 @@ import thunk from 'redux-thunk';
 import customer from './state/customer.state';
 import order from './state/order.state';
 import restaurantFood from './state/restaurantFood.state';
+import rs from './state/rs.state';
 
 const rootReducer = combineReducers({
 	form: formReducer,
 	customer,
 	order,
 	restaurantFood,
+	rs,
 });
 
 const store = createStore(rootReducer, compose(

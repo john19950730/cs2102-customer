@@ -109,6 +109,6 @@ const customerReducer = (state, action) => {
 		orders,
 		showAll,
 	})(state, action);
-}
+};
 
 export default customerReducer;

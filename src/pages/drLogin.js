@@ -28,7 +28,7 @@ const DrLogin = ({ formValues, drLogin }) => (
 			<table>
 				<tbody>
 					<tr>
-						<td className="label">Phone Number:</td>
+						<td className="label">Username:</td>
 						<td><Field component="input" name="drUser" type="text" /></td>
 					</tr>
 					<tr>

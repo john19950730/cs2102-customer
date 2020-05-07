@@ -1,0 +1,56 @@
+.restaurant-staff {
+	padding: 50px;
+}
+.rs-header {
+	text-align: center;
+	margin-bottom: 20px;
+}
+.rs-login {
+	text-align: center;
+}
+.rs-login table {
+	width: 100%;
+}
+.rs-login table tbody tr td {
+	width: 50%;
+}
+.rs-login table tbody tr td:nth-child(2) {
+	text-align: left;
+}
+.rs-login button {
+	margin: 20px;
+	padding: 10px;
+	font-size: 20pt;
+}
+.rs-footer {
+	margin-top: 80px;
+	font-size: 8pt;
+	text-align: right;
+}
+.rs-main-label {
+	font-size: 16pt;
+}
+.rs-name {
+	font-weight: 700;
+	color: #c72;
+}
+.rs-menu {
+	margin-top: 20px;
+}
+.rs-menu-label, .rs-new-header {
+	font-size: 24pt;
+	font-weight: 700;
+}
+.rs-menu table.rs-menu-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.rs-menu table.rs-menu-table thead {
+	font-weight: 700;
+}
+.rs-menu table.rs-menu-table tbody tr:nth-child(even) {
+	background-color: #bbb;
+}
+.rs-menu .fprice, .rs-menu .flimit, .rs-menu .favail {
+	width: 100px;
+}
